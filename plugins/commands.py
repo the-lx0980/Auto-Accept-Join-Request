@@ -7,7 +7,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from config import ADMINS, CHAT_ID
 
-@Client.on_message(filters.private & filters.command(["start"]))
+@Bot.on_message(filters.private & filters.command(["start"]))
 async def start(client: Client, message: Message):
     approvedbot = await client.get_me() 
     button=[[
@@ -15,7 +15,7 @@ async def start(client: Client, message: Message):
       ]]
     await message.reply_text(text="**Hello...⚡\n\n I'M SIMPLE TELEGRAM AUTO REQUEST ACCEPT BOT**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
 
-@Client.on_chat_join_request(filters.chat(CHAT_ID))
+@Bot.on_chat_join_request(filters.chat(CHAT_ID))
 async def autoapprove(client: Client, message: ChatJoinRequest):
     chat=message.chat # Chat
     user=message.from_user # User
