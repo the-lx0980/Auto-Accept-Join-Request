@@ -103,6 +103,6 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         return await pls_wait.edit(status)
 
     else:
-        msg = await message.reply(REPLY_ERROR)
+        msg = await message.reply("""<code>Use this command as a replay to any telegram message with out any spaces.</code>""")
         await asyncio.sleep(8)
         await msg.delete()
