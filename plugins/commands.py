@@ -30,11 +30,14 @@ async def start(client: Client, message: Message):
 async def autoapprove(client: Client, message: ChatJoinRequest):
     chat=message.chat # Chat
     user=message.from_user # User
-    print(f"{user.first_name} 𝙹𝙾𝙸𝙽𝙴𝙳 ⚡") # Logs
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
+    buttons = [[
+        InlineKeyboardButton('Support', url=f'https://t.me/{SUPPORT_CHAT}')
+    ]]
+    reply_markup=InlineKeyboardMarkup(buttons)
     await client.send_message(
-    chat_id=user.id,
-    TEXT  = f"""
+        chat_id=user.id,
+        text  = f"""
 नमस्ते {user.name} डीएफएफ अपडेट चैनल में आपका स्वागत है।
 
 आपको यह संदेश इसलिए प्राप्त हुआ क्योंकि आपने 
@@ -49,5 +52,11 @@ You received this message because you
 requested to join {chat.title} Channel.
 
 Your request has been accepted ✅
-"""
-    text=TEXT.format(mention=user.mention, title=chat.title))       
+""",
+    )
+    await client.send_message(
+        chat_id = user.id,
+        text = "चैनल लिंक\nChannel Link",
+        reply_markup = reply_markup,
+    )
+    
