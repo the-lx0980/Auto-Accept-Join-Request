@@ -6,8 +6,8 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 APP_ID = int(os.environ.get("APP_ID", ""))
 API_HASH = os.environ.get("API_HASH", "")
 CHAT_ID = int(os.environ.get("CHAT_ID", ""))
-DB_URI = os.environ.get("DATABASE_URL", "")
-DB_NAME = os.environ.get("DATABASE_NAME", "autoacceptxbot")  
+DB_URI = os.environ.get("DB_URL", "")
+DB_NAME = os.environ.get("DB_NAME", "autoacceptxbot")  
 try:
     ADMINS=[]
     for x in (os.environ.get("ADMINS", "").split()):
