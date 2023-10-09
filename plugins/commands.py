@@ -26,7 +26,7 @@ async def autoapprove(client: Client, message: ChatJoinRequest):
             pass
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
     buttons = [[
-        InlineKeyboardButton('Support', url=f'https://t.me/{SUPPORT_CHAT}')
+        InlineKeyboardButton('Support', url=f'https://t.me/lx0980AI')
     ]]
     reply_markup=InlineKeyboardMarkup(buttons)
     await client.send_message(
