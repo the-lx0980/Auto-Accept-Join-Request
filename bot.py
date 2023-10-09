@@ -1,34 +1,27 @@
-import os
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, User, ChatJoinRequest
+import sys
+from pyrogram import Client
+from pyrogram.enums import ParseMode
+from config import API_HASH, APP_ID, LOGGER, BOT_TOKEN
 
-app=Client(
-    "Auto-Accept-Join-Request-Bot",
-    bot_token = "6285956621:AAHF-zSJa3D_1JjUnF7ODx2H0Ih9JbjYj8g",
-    api_id = 6353248,
-    api_hash = "1346f958b9d917f0961f3e935329eeee"
-)
+class Bot(Client):
+    def __init__(self):
+        super().__init__(
+            name="Bot",
+            api_hash=API_HASH,
+            api_id=APP_ID,
+            plugins={"root": "plugins"},
+            workers=8,
+            bot_token=BOT_TOKEN
+        )
+        self.LOGGER = LOGGER
 
-CHAT_ID=-1001300164856
-TEXT=os.environ.get("APPROVED_WELCOME_TEXT", "Hello {mention}\nWelcome To {title}\n\nYour Auto Approved")
-APPROVED = os.environ.get("APPROVED_WELCOME", "on").lower()
-
-@app.on_message(filters.private & filters.command(["start"]))
-async def start(client: app, message: Message):
-    approvedbot = await client.get_me() 
-    button=[[
-      InlineKeyboardButton("𝚄𝙿𝙳𝙰𝚃𝙴𝚉", url="https://t.me/lx0980AI")
-      ]]
-    await message.reply_text(text="**Hello...⚡\n\n I'M SIMPLE TELEGRAM AUTO REQUEST ACCEPT BOT**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
-
-@app.on_chat_join_request(filters.chat(CHAT_ID))
-async def autoapprove(client: app, message: ChatJoinRequest):
-    chat=message.chat # Chat
-    user=message.from_user # User
-    print(f"{user.first_name} 𝙹𝙾𝙸𝙽𝙴𝙳 ⚡") # Logs
-    await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
-    if APPROVED == "on":
-        await client.send_message(chat_id=user.id, text=TEXT.format(mention=user.mention, title=chat.title))       
-
-print("Bot Started ✨")
-app.run()
+    async def start(self):
+        await super().start()
+        usr_bot_me = await self.get_me()
+        self.set_parse_mode(ParseMode.HTML)
+        self.LOGGER(__name__).info(f"Bot Running..!\n\nCreated by \nhttps://t.me/Lx0980AI")
+        self.username = usr_bot_me.username
+        
+    async def stop(self, *args):
+        await super().stop()
+        self.LOGGER(__name__).info("Bot stopped.")
