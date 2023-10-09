@@ -14,7 +14,7 @@ TEXT=os.environ.get("APPROVED_WELCOME_TEXT", "Hello {mention}\nWelcome To {title
 APPROVED = os.environ.get("APPROVED_WELCOME", "on").lower()
 
 @app.on_message(filters.private & filters.command(["start"]))
-async def start(client: pr0fess0r_99, message: Message):
+async def start(client: app, message: Message):
     approvedbot = await client.get_me() 
     button=[[
       InlineKeyboardButton("𝚄𝙿𝙳𝙰𝚃𝙴𝚉", url="https://t.me/lx0980AI")
