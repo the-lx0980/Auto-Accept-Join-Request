@@ -3,13 +3,13 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, User, ChatJoinRequest
 
 app=Client(
-    "𝗕𝗼𝘁 𝗦𝘁𝗮𝗿𝘁𝗲𝗱 𝗣𝗹𝗲𝗮𝘀𝗲 𝗦𝘂𝗯𝘀𝗰𝗿𝗶𝗯𝗲 𝗢𝗽𝘂𝘀𝗧𝗲𝗰𝗵𝘇",
-    bot_token = os.environ["BOT_TOKEN"],
-    api_id = int(os.environ["API_ID"]),
-    api_hash = os.environ["API_HASH"]
+    "Auto-Accept-Join-Request-Bot",
+    bot_token = "6285956621:AAHF-zSJa3D_1JjUnF7ODx2H0Ih9JbjYj8g",
+    api_id = 6353248,
+    api_hash = "1346f958b9d917f0961f3e935329eeee"
 )
 
-CHAT_ID=int(os.environ.get("CHAT_ID", None))
+CHAT_ID=-1001300164856
 TEXT=os.environ.get("APPROVED_WELCOME_TEXT", "Hello {mention}\nWelcome To {title}\n\nYour Auto Approved")
 APPROVED = os.environ.get("APPROVED_WELCOME", "on").lower()
 
@@ -17,12 +17,9 @@ APPROVED = os.environ.get("APPROVED_WELCOME", "on").lower()
 async def start(client: pr0fess0r_99, message: Message):
     approvedbot = await client.get_me() 
     button=[[
-      InlineKeyboardButton("𝚄𝙿𝙳𝙰𝚃𝙴𝚉", url="https://t.me/MWUpdatez"),
-      InlineKeyboardButton("𝚂𝚄𝙿𝙿𝙾𝚁𝚃", url="https://t.me/OpusTechz")
-      ],[
-      InlineKeyboardButton("𝚂𝚄𝙱𝚂𝙲𝚁𝙸𝙱𝙴", url=f"https://youtube.com/channel/UCf_dVNrilcT0V2R--HbYpMA")
+      InlineKeyboardButton("𝚄𝙿𝙳𝙰𝚃𝙴𝚉", url="https://t.me/lx0980AI")
       ]]
-    await message.reply_text(text="**𝙷𝙴𝙻𝙻𝙾...⚡\n\n𝙸𝙰𝙼 𝙰 𝚂𝙸𝙼𝙿𝙻𝙴 𝚃𝙴𝙻𝙴𝙶𝚁𝙰𝙼 𝙰𝚄𝚃𝙾 𝚁𝙴𝚀𝚄𝙴𝚂𝚃 𝙰𝙲𝙲𝙴𝙿𝚃 𝙱𝙾𝚃.\n𝙵𝙾𝚁 𝚈𝙾𝚄𝚁 𝙲𝙷𝙰𝚃𝚂 𝙲𝚁𝙴𝙰𝚃𝙴 𝙾𝙽𝙴 𝙱𝙾𝚃... \n𝚅𝙸𝙳𝙴𝙾 𝙾𝙽 𝙼𝚈 𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝙲𝙷𝙰𝙽𝙽𝙴𝙻**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
+    await message.reply_text(text="**Hello...⚡\n\n I'M SIMPLE TELEGRAM AUTO REQUEST ACCEPT BOT**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
 
 @app.on_chat_join_request(filters.chat(CHAT_ID))
 async def autoapprove(client: app, message: ChatJoinRequest):
